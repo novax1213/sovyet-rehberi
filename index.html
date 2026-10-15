@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sovyet Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column, a summary table first, then one entry per new feature; accent is brick red. */
+:root {
+  --paper: #f6f3f1;
+  --ink: #1d2733;
+  --muted: #586472;
+  --line: #cfd6de;
+  --horizon: #9a3b2c;
+  --horizon-soft: #f3e3df;
+  --ok: #2f7a4f;
+  --ok-soft: #dcefe3;
+  --part: #9a6a12;
+  --part-soft: #f6ead2;
+  --no: #a33a32;
+  --no-soft: #f5dfdc;
+  --card: #ffffff;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1a1514; --ink: #e3e9ef; --muted: #9aa7b5; --line: #2b3642;
+    --horizon: #e39a89; --horizon-soft: #35201c;
+    --ok: #7cc79b; --ok-soft: #173326; --part: #e0b45e; --part-soft: #352a14;
+    --no: #ee8c84; --no-soft: #3a1d1b; --card: #18212b; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1a1514; --ink: #e3e9ef; --muted: #9aa7b5; --line: #2b3642;
+  --horizon: #e39a89; --horizon-soft: #35201c;
+  --ok: #7cc79b; --ok-soft: #173326; --part: #e0b45e; --part-soft: #352a14;
+  --no: #ee8c84; --no-soft: #3a1d1b; --card: #18212b; color-scheme: dark;
+}
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 18px; padding-block: 36px 64px; display: grid; gap: 40px; }
+header { display: grid; gap: 10px; border-bottom: 3px solid var(--horizon); padding-bottom: 20px; }
+.eyebrow { font-family: var(--display); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--horizon); font-size: 15px; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(36px, 7vw, 56px); line-height: 1; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 28px; margin: 0; letter-spacing: .01em; text-wrap: balance; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 24px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 66ch; }
+.lead { color: var(--muted); font-size: 17px; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 14px; color: var(--muted); }
+.chip { display: inline-block; font-family: var(--display); font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 9px; border-radius: 3px; white-space: nowrap; }
+.chip.ok { color: var(--ok); background: var(--ok-soft); }
+.chip.part { color: var(--part); background: var(--part-soft); }
+.chip.no { color: var(--no); background: var(--no-soft); }
+section { display: grid; gap: 16px; }
+.table-box { overflow-x: auto; border: 1px solid var(--line); background: var(--card); }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--display); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 14px; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td a { color: var(--horizon); }
+.entries { display: grid; gap: 22px; }
+.entry { background: var(--card); border: 1px solid var(--line); padding: 18px 18px 20px; display: grid; gap: 12px; min-width: 0; }
+.entry-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; }
+.fr { font-style: italic; color: var(--muted); font-size: 14px; }
+.effects { display: flex; flex-wrap: wrap; gap: 6px; }
+.fx { font-family: var(--mono); font-size: 13px; padding: 2px 7px; border: 1px solid var(--line); border-radius: 3px; font-variant-numeric: tabular-nums; }
+.label { font-family: var(--display); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-size: 13px; color: var(--horizon); }
+ol, ul { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 66ch; }
+.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 8px; }
+.path { border-left: 3px solid var(--horizon); background: var(--horizon-soft); padding: 8px 10px; display: grid; gap: 2px; min-width: 0; }
+.path b { font-family: var(--display); font-weight: 600; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.focus { font-weight: 600; }
+.note { border-left: 3px solid var(--line); padding-left: 12px; color: var(--muted); font-size: 15px; }
+footer { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
+a:focus-visible { outline: 2px solid var(--horizon); outline-offset: 2px; }
+.search { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; background: var(--paper); padding-block: 12px; border-bottom: 1px solid var(--line); display: grid; gap: 6px; }
+.search label { font-family: var(--display); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-size: 14px; color: var(--horizon); }
+.search-row { display: flex; gap: 8px; min-width: 0; }
+.search input { flex: 1; min-width: 0; font: inherit; font-size: 17px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 4px; background: var(--card); color: var(--ink); }
+.search input:focus-visible { outline: none; border-color: var(--horizon); }
+.search button { font-family: var(--display); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: 15px; padding: 0 14px; border: 2px solid var(--line); border-radius: 4px; background: var(--card); color: var(--muted); cursor: pointer; }
+.search button:hover { color: var(--ink); border-color: var(--horizon); }
+.search button:focus-visible { outline: 2px solid var(--horizon); outline-offset: 2px; }
+.count { font-size: 14px; color: var(--muted); min-height: 1.4em; }
+.empty { background: var(--card); border: 1px dashed var(--line); padding: 18px; color: var(--muted); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AGORA Sub mod [hegamon] · Sovyetler Birliği</div>
+    <h1>Sovyet Rehberi</h1>
+    <p class="lead">Alt modda Sovyetler Birliği'ne eklenen ve değiştirilen focuslar, kararlar ve harita değişiklikleri. Focus ve karar adları oyundaki İngilizce adlarıyla yazıldı.</p>
+    <div class="legend">
+      <span><span class="chip ok">Focus</span> focus ağacından alınır</span>
+      <span><span class="chip part">Karar</span> kararlar menüsünden alınır</span>
+      <span><span class="chip no">Harita</span> oyun başından beri böyle</span>
+    </div>
+  </header>
+
+  <div class="search" role="search">
+    <label for="q">Ara</label>
+    <div class="search-row">
+      <input id="q" type="search" placeholder="Örn. Polonya, Baltık, kazak, tank, harita" autocomplete="off" spellcheck="false">
+      <button id="clear" type="button">Temizle</button>
+    </div>
+    <p id="count" class="count" aria-live="polite">Türkçe ya da oyundaki İngilizce adını yaz.</p>
+  </div>
+
+  <section aria-labelledby="ozet">
+    <h2 id="ozet">Özet</h2>
+    <div class="table-box">
+      <table>
+        <thead><tr><th>Yenilik</th><th>Ne yapar</th><th>Tür</th></tr></thead>
+        <tbody>
+          <tr><td><a href="#poland">Claims on Poland</a></td><td>Doğu Polonya'yı savaşsız isteme</td><td><span class="chip ok">Focus</span></td></tr>
+          <tr><td><a href="#removed">Kaldırılan Polonya focusları</a></td><td>Demand Eastern Poland ve Offer Poland Protection yok</td><td><span class="chip ok">Focus</span></td></tr>
+          <tr><td><a href="#baltic">Admit the Baltic Republics</a></td><td>Baltık ülkelerini birliğe katma</td><td><span class="chip part">Karar</span></td></tr>
+          <tr><td><a href="#cossack">Restore Cossack Units</a></td><td>Mekanize bonusu ve 4 kazak süvari tümeni</td><td><span class="chip ok">Focus</span></td></tr>
+          <tr><td><a href="#tank">Armoured Doctrine Debate</a></td><td>Tank saldırısı ya da savunması +%10</td><td><span class="chip ok">Focus</span></td></tr>
+          <tr><td><a href="#greater">Greater Russia</a></td><td>Kurmak için ek şart: Trabzon, Van, Alaska</td><td><span class="chip part">Karar</span></td></tr>
+          <tr><td><a href="#map">Yeni state'ler</a></td><td>Doğuda 8 yeni state</td><td><span class="chip no">Harita</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="detay">
+    <h2 id="detay">Ayrıntılar</h2>
+    <p id="empty" class="empty" hidden>Bu adla bir şey bulunamadı. Başka bir kelime dene, örneğin "Polonya" ya da "tank".</p>
+    <div class="entries">
+
+      <article class="entry" id="poland" data-keys="polonya doğu polonya claims on poland talep toprak lwów wilno vilnius savaş hedefi">
+        <div class="entry-head"><h3>Claims on Poland</h3><span class="chip ok">Focus</span></div>
+        <p>Focus bitince Polonya'ya bir nota gider. Sovyetler şu bölgeleri ister: Wilejka, Nowogródek, Polesie, Wołyń, Lwów, Stanisławów ve Vilnius.</p>
+        <ul>
+          <li><b>Polonya kabul ederse:</b> bu topraklar savaşsız Sovyetlere geçer. Polonya AI'ı her zaman kabul eder.</li>
+          <li><b>Polonya reddederse:</b> Sovyetler bu topraklar için savaş hedefi alır. Bu ancak Polonya'yı oyuncu oynuyorsa olur.</li>
+        </ul>
+      </article>
+
+      <article class="entry" id="removed" data-keys="polonya demand eastern poland offer poland protection kaldırıldı warsaw pact varşova paktı">
+        <div class="entry-head"><h3>Kaldırılan Polonya focusları</h3><span class="chip ok">Focus</span></div>
+        <p><b>Demand Eastern Poland</b> ve <b>Offer Poland Protection</b> focusları ağaçtan kaldırıldı. Polonya meselesi artık Claims on Poland ile çözülüyor. <b>Warsaw Pact</b> focusu bu ikisinden birini istiyordu; artık Balkan ya da Batı yolundaki focuslardan biriyle açılıyor.</p>
+      </article>
+
+      <article class="entry" id="baltic" data-keys="baltık baltic estonya letonya litvanya katılma ilhak birlik core çekirdek self determination">
+        <div class="entry-head"><h3>Admit the Baltic Republics to the Union</h3><span class="chip part">Karar</span></div>
+        <p>Respect Baltic Self-Determination focusundan sonra siyasi kararlarda açılır. 30 PP, bir kez alınır.</p>
+        <ul>
+          <li>Estonya, Letonya ve Litvanya'nın her biri ya yok olmalı ya da Sovyetlerle savaşta olmamalı ve şunlardan biri olmalı: Sovyet ittifakında, Sovyet kuklası ya da komünist.</li>
+          <li>Karar üç ülkeye katılma dilekçesi gönderir. Her biri Sovyetler Birliği'ne katılır ve bütün toprakları Sovyet core'u olur.</li>
+        </ul>
+      </article>
+
+      <article class="entry" id="cossack" data-keys="kazak cossack süvari mekanize mechanized dovator tümen">
+        <div class="entry-head"><h3>Restore Cossack Units</h3><span class="chip ok">Focus</span></div>
+        <p>Strengthen the Mobilization Plan'dan sonra gelir, Cohesion First ile birlikte alınamaz.</p>
+        <ul>
+          <li>Başkentte 4 kazak süvari tümeni kurulur ve General Lev Dovator gelir.</li>
+          <li><b>Mechanized Cossack Corps</b> ulusal ruhu gelir.</li>
+        </ul>
+        <div class="effects"><span class="fx">Mekanize ekipman maliyeti −%15</span><span class="fx">Mekanize hızı +%5</span><span class="fx">Mekanize yarma +%5</span></div>
+      </article>
+
+      <article class="entry" id="tank" data-keys="tank zırh doktrin armoured doctrine deep battle bulwark saldırı savunma rehabilitated military">
+        <div class="entry-head"><h3>Armoured Doctrine Debate</h3><span class="chip ok">Focus</span></div>
+        <p>Rehabilitated Military'den sonra gelir (25 gün). Bir olayda iki kalıcı ulusal ruhtan biri seçilir:</p>
+        <div class="paths">
+          <div class="path"><b>Deep Battle Armour</b><span>Tank saldırısı +%10</span></div>
+          <div class="path"><b>Armoured Bulwark</b><span>Tank savunması +%10</span></div>
+        </div>
+      </article>
+
+      <article class="entry" id="greater" data-keys="büyük rusya greater russia formable kurma trabzon van alaska">
+        <div class="entry-head"><h3>Greater Russia</h3><span class="chip part">Karar</span></div>
+        <p>Formable Nations kararlarındaki Greater Russia'yı kurmak için oyunun kendi şartlarına ek olarak <b>Trabzon</b>, <b>Van</b> ve <b>Alaska</b>'yı da kontrol etmek gerekiyor.</p>
+      </article>
+
+      <article class="entry" id="map" data-keys="harita state yeni kutaisi astrahan ulyanovsk nijni novgorod penza vologda volga almanları kotlas">
+        <div class="entry-head"><h3>Yeni state'ler</h3><span class="chip no">Harita</span></div>
+        <p>Sovyet haritasında 8 büyük state ikiye bölündü. Yeni doğu yarıları "(A-A East)" adıyla geçiyor:</p>
+        <div class="effects"><span class="fx">Kutaisi</span><span class="fx">Astrahan</span><span class="fx">Ulyanovsk</span><span class="fx">Nijni Novgorod</span><span class="fx">Penza</span><span class="fx">Vologda</span><span class="fx">Volga Almanları</span><span class="fx">Kotlas</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Bu bilgiler alt modun dosyalarından çıkarıldı. Değerler olaylarla biraz değişebilir.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var q = document.getElementById('q');
+  var clear = document.getElementById('clear');
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var entries = Array.prototype.slice.call(document.querySelectorAll('.entry'));
+  var rows = Array.prototype.slice.call(document.querySelectorAll('tbody tr'));
+  var summary = document.getElementById('ozet').parentNode;
+  var hint = count.textContent;
+  function norm(s) {
+    return s.toLocaleLowerCase('tr').replace(/ı/g, 'i').replace(/ş/g, 's').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ö/g, 'o').replace(/ç/g, 'c').replace(/â/g, 'a').replace(/î/g, 'i').replace(/û/g, 'u');
+  }
+  var index = entries.map(function (el) {
+    return { el: el, id: el.id, text: norm(el.textContent + ' ' + (el.getAttribute('data-keys') || '')) };
+  });
+  function run() {
+    var words = norm(q.value).split(/\s+/).filter(Boolean);
+    var shown = 0;
+    var ids = {};
+    index.forEach(function (it) {
+      var ok = words.every(function (w) { return it.text.indexOf(w) !== -1; });
+      it.el.hidden = !ok;
+      if (ok) { shown++; ids[it.id] = true; }
+    });
+    rows.forEach(function (r) {
+      var a = r.querySelector('a');
+      var id = a ? a.getAttribute('href').slice(1) : '';
+      r.hidden = words.length > 0 && !ids[id];
+    });
+    summary.hidden = words.length > 0 && shown === 0;
+    empty.hidden = !(words.length > 0 && shown === 0);
+    count.textContent = words.length === 0 ? hint : (shown === 0 ? 'Sonuç yok.' : shown + ' debuff bulundu.');
+  }
+  q.addEventListener('input', run);
+  clear.addEventListener('click', function () { q.value = ''; run(); q.focus(); });
+  run();
+})();
+</script>
+</body>
+</html>
